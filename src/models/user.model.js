@@ -3,7 +3,7 @@ import { Schema } from "mongoose";
 
 const userSchema = new Schema(
     {
-        Username: {
+        username: {
             type: String,
             required: true,
             trim:true
@@ -16,7 +16,8 @@ const userSchema = new Schema(
             type: String,
             required: true,
             enum: ["admin", "user"],
-            default: "user"
+            default: "user",
+            immutable:true
             
         }
     }
