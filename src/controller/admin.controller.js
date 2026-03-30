@@ -16,7 +16,7 @@ const admin = async (req, res) => {
         }
 
         if (user.role !== "admin") {
-            return res.status(401).json({message:"Unauthorized"})
+            return res.status(403).json({message:"Forbidden"})
         }
 
         return res.status(201).json({

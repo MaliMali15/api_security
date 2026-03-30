@@ -5,6 +5,7 @@ import { getDetails } from "../controller/user.controller.js";
 import { getUsers } from "../controller/allUser.controller.js";
 import { getUserById } from "../controller/getUserById.controller.js";
 import { admin } from "../controller/admin.controller.js";
+import { updateDetails } from "../controller/updateDetails.controller.js";
 import { jwtverify } from "../middleware/auth.middleware.js";
 
 
@@ -14,7 +15,8 @@ router.post("/register", register)
 router.post("/login", login)
 router.get("/userDetails", jwtverify, getDetails)
 router.get("/allUsers", jwtverify, getUsers)
-router.get("/admin",jwtverify,admin)
+router.get("/admin", jwtverify, admin)
+router.patch("/update",jwtverify,updateDetails)
 router.get("/:userId", jwtverify, getUserById)
 
 
