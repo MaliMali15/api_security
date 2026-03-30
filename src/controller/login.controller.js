@@ -4,17 +4,17 @@ import bcrypt from "bcrypt"
 
 const login = async (req, res) => {
     try {
-        const { Username, password } = req.body
+        const { username, password } = req.body
         
-        if (!Username || !password) {
+        if (!username || !password) {
             return res.status(400).json({message:"Invalid credentials"})
         }
         
-        if (typeof Username != "string" || typeof password != "string") {
+        if (typeof username != "string" || typeof password != "string") {
             return res.status(400).json({message:"Invalid Credentials"})
         }
 
-        const user = await User.findOne({ Username: Username })
+        const user = await User.findOne({ username: username })
 
         if (!user) {
             return res.status(404).json({message:"User doesn't exist"})

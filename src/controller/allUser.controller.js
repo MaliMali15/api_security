@@ -3,7 +3,7 @@ import User from "../models/user.model.js"
 
 const getUsers = async (req,res) => {
     try {
-        const users = await User.find().select("-Username -password")
+        const users = await User.find().select("-username -password")
         
         console.log(users);
         
