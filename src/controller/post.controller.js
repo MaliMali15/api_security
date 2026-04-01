@@ -50,5 +50,36 @@ const getPostById = async (req, res)=>{
     }
 }
 
+const postFilter = async (req, res)=>{
+try {
+    const { owner } = req.query
+        
+        if (!owner) {
+            return res.status(401).json({message:"Invalid"})
+    }
 
-export { createPost,getPostById }
+    if (typeof owner !== "string") {
+        return res.status(401).json({message:"Invalid query"})
+    }
+    
+    if (req.user._id.toString() !== owner) {
+        return res.status(403).json({message:"Unauthorized"})
+    }
+
+    const post = await Post.find({ owner : owner})
+    
+    return res.status(200).json(
+        {
+            message: "Post successfully retreived",
+            post
+        }   
+        )
+        
+} catch (error) {
+    return res.status(500).json({ error:error.message })
+}
+
+}
+
+
+export { createPost, getPostById, postFilter }
